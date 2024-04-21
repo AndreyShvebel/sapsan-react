@@ -1,28 +1,43 @@
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export function ImageSearch() {
     const navigate = useNavigate();
-    const { search } = useLocation();
-    const inputRef = useRef<HTMLInputElement>(null);
-
+    const { search, pathname } = useLocation();
     const searchParams = new URLSearchParams(search);
-    const onSearchClick = async () => {
-        searchParams.set('query', inputRef.current?.value ?? '');
+    const [inputValue, setInputValue] = useState(searchParams.get('query') ?? '');
 
+    const setSearchParams = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value);
+    };
+
+    const implementSearch = () => {
+        searchParams.set('query', inputValue);
         navigate({
+            pathname: pathname.includes('result') ? '' : 'result',
             search: searchParams.toString(),
         });
     };
+
+    const onKeyDown = (event: React.KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            implementSearch();
+        }
+    };
+
+    useEffect(() => {
+        setInputValue(searchParams.get('query') ?? '');
+    }, [search]);
 
     return (
         <>
             <input
                 type='text'
-                ref={inputRef}
-                defaultValue={searchParams.get('query') ?? ''}
+                value={inputValue}
+                onChange={setSearchParams}
+                onKeyDown={onKeyDown}
             />
-            <button onClick={onSearchClick}>Искать</button>
+            <button onClick={implementSearch}>Искать</button>
         </>
     );
 }

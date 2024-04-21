@@ -1,5 +1,14 @@
+import { useOutlet } from 'react-router-dom';
+
 import { ImageSearch } from '@/features/image-search';
 
 export function MainSearch() {
-    return <ImageSearch />;
+    const outlet = useOutlet();
+    return (
+        <>
+            {!outlet && <ImageSearch />}
+            {/* <Outlet /> */}
+            {outlet}
+        </>
+    );
 }
