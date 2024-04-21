@@ -1,19 +1,25 @@
 import { useLocation } from 'react-router-dom';
 
+import { Loader } from '@/entities/loader';
+
 import { useGetImagesQuery } from '@/features/image-search';
 
 export function SearchResult() {
     const { search } = useLocation();
     const searchParams = new URLSearchParams(search);
-    const { data } = useGetImagesQuery(searchParams.toString());
+    const { data, isLoading } = useGetImagesQuery(searchParams.toString());
     return (
         <div>
-            {data?.results.map(img => (
-                <img
-                    key={img.id}
-                    src={img.urls.regular}
-                />
-            ))}
+            {isLoading ? (
+                <Loader />
+            ) : (
+                data?.results.map(img => (
+                    <img
+                        key={img.id}
+                        src={img.urls.regular}
+                    />
+                ))
+            )}
         </div>
     );
 }
