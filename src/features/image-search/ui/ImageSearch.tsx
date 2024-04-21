@@ -1,23 +1,26 @@
-import { useState } from 'react';
+import { useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export function ImageSearch() {
-    const [query, setQuery] = useState('');
+    const navigate = useNavigate();
+    const { search } = useLocation();
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value);
-    };
-
+    const searchParams = new URLSearchParams(search);
     const onSearchClick = async () => {
-        const response = await fetch(import.meta.env.VITE_API_URL! + `&query=${query}&page=1`);
-        const json = await response.json();
-        console.log(json);
+        searchParams.set('query', inputRef.current?.value ?? '');
+
+        navigate({
+            search: searchParams.toString(),
+        });
     };
 
     return (
         <>
             <input
-                onChange={onInputChange}
                 type='text'
+                ref={inputRef}
+                defaultValue={searchParams.get('query') ?? ''}
             />
             <button onClick={onSearchClick}>Искать</button>
         </>
