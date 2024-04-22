@@ -38,9 +38,7 @@ export function SearchResult() {
 
     return (
         <div>
-            {isLoading ? (
-                <Loader />
-            ) : data?.results.length ? (
+            {isLoading ? null : data?.results.length ? (
                 <>
                     <div className={styles.imageWrapper}>
                         {data?.results.map(img => (
@@ -58,6 +56,7 @@ export function SearchResult() {
             ) : (
                 <p>К сожалению, поиск не дал результатов</p>
             )}
+            {isFetching ? <Loader /> : null}
         </div>
     );
 }
