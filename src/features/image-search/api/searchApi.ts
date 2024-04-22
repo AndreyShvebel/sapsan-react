@@ -34,14 +34,14 @@ export const searchApi = createApi({
             // serializeQueryArgs: ({ endpointName }) => {
             //     return endpointName;
             // },
-            merge: (currentCache, newItems) => {
-                currentCache.results.push(...newItems.results);
-            },
-            forceRefetch({ currentArg, previousArg, state, endpointState }) {
-                console.log(currentArg.query !== previousArg.query, state, endpointState);
-                // return currentArg?.query !== previousArg?.query;
-                return false;
-            },
+            // merge: (currentCache, newItems) => {
+            //     currentCache.results.push(...newItems.results);
+            // },
+            // forceRefetch({ currentArg, previousArg, state, endpointState }) {
+            //     console.log(currentArg.query !== previousArg.query, state, endpointState);
+            //     // return currentArg?.query !== previousArg?.query;
+            //     return false;
+            // },
         }),
     }),
 });
