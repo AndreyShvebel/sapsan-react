@@ -19,13 +19,8 @@ export function SearchResult() {
     useEffect(() => {
         const onScroll = () => {
             const isScrolledToBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
-            if (isScrolledToBottom && !isFetching) {
-                setPage(prev => {
-                    if (data.total_pages === prev) {
-                        return prev;
-                    }
-                    return ++prev;
-                });
+            if (isScrolledToBottom && !isFetching && data.total_pages !== page) {
+                setPage(prev => ++prev);
             }
         };
 

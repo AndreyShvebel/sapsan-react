@@ -1,3 +1,3 @@
 export function Loader() {
-    return <div>Загрузка...</div>;
+    return <span>Загрузка...</span>;
 }

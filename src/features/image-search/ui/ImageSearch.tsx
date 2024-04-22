@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import clearInput from '@/shared/assets/images/clearInput.svg';
@@ -11,6 +11,7 @@ export function ImageSearch() {
     const searchParams = new URLSearchParams(search);
     const [inputValue, setInputValue] = useState(searchParams.get('query') ?? '');
     const [clearButtonIsShown, setClearButtonIsShown] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const setSearchParams = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
@@ -49,10 +50,14 @@ export function ImageSearch() {
                     className={styles.searchInput}
                     placeholder='Телефоны, яблоки, груши...'
                     enterKeyHint='search'
+                    ref={inputRef}
                 />
                 {clearButtonIsShown ? (
                     <img
-                        onClick={() => setInputValue('')}
+                        onClick={() => {
+                            setInputValue('');
+                            inputRef.current.focus();
+                        }}
                         src={clearInput}
                         className={styles.searchClear}
                     />
