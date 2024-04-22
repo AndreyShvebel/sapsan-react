@@ -27,7 +27,15 @@
             "@/widgets/*": ["widgets/*"],
             "@/pages/*": ["pages/*"],
             "@/app/*": ["app/*"]
-        }
+        },
+        "plugins": [
+            {
+                "name": "typescript-plugin-css-modules",
+                "options": {
+                    "classnameTransform": "camelCaseOnly"
+                }
+            }
+        ]
     },
     "include": ["src", "./.eslintrc.cjs"],
     "references": [{ "path": "./tsconfig.node.json" }]

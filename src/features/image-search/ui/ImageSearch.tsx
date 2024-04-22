@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import styles from './styles.module.scss';
+
 export function ImageSearch() {
     const navigate = useNavigate();
     const { search, pathname } = useLocation();
@@ -36,8 +38,16 @@ export function ImageSearch() {
                 value={inputValue}
                 onChange={setSearchParams}
                 onKeyDown={onKeyDown}
+                className={styles.searchInput}
+                placeholder='Телефоны, яблоки, груши...'
+                enterKeyHint='search'
             />
-            <button onClick={implementSearch}>Искать</button>
+            <button
+                className={styles.searchButton}
+                onClick={implementSearch}
+            >
+                Искать
+            </button>
         </>
     );
 }

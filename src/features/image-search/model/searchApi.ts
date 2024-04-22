@@ -26,8 +26,23 @@ export const searchApi = createApi({
     reducerPath: 'searchApi',
     baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
     endpoints: builder => ({
-        getImages: builder.query<TResult, string>({
-            query: params => `/photos?client_id=Ip0XA55zY7b7-d19osq1L5btGg-YCeDZVpnnJjXqHxs&${params}&page=1`,
+        getImages: builder.query<TResult, { query: string; page: number }>({
+            query: ({ query, page }) =>
+                `/photos?client_id=Ip0XA55zY7b7-d19osq1L5btGg-YCeDZVpnnJjXqHxs&query=${query}&page=${page}`,
+            // transformResponse: (_, response) => response?.response.
+            // async onQueryStarted(_, { dispatch, getState, extra, requestId }) {
+            //     const patchResult = dispatch(
+            //         searchApi.util.updateQueryData('getImages', getState(), draft => {
+            //             draft.results.push(...extra.newPhotos);
+            //         })
+            //         searchApi.util.
+            //     );
+            //     if (patchResult) {
+            //         patchResult.meta.requestId = requestId;
+            //     }
+            // },
+
+            // skip: ({ query, page }) => !query || page <= 0,
         }),
     }),
 });

@@ -1,0 +1,33 @@
+.search {
+    &Input {
+        border-radius: 12px;
+        height: 48px;
+        max-width: 420px;
+        background-color: #eeeeee;
+        border: none;
+        padding: 12px 8px 12px 36px;
+        box-sizing: border-box;
+        font-size: 16px;
+
+        background-image: url('../../../shared/assets/images/searchIcon.svg');
+        background-repeat: no-repeat;
+        background-position: 5px center;
+
+        margin-right: 8px;
+    }
+    &Button {
+        border-radius: 12px;
+        box-sizing: border-box;
+        height: 48px;
+        width: 82px;
+        border: none;
+        padding: 14px 16px 14px 16px;
+        background-color: #eb0c0c;
+        color: white;
+
+        &:hover {
+            background-color: #c30000;
+            cursor: pointer;
+        }
+    }
+}

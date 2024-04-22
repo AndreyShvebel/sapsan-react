@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { router } from '../router/router';
 import { store } from '../store/store';
+import './styles.module.scss';
 
 export function App() {
     return (

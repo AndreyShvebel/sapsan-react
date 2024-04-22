@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'San Francisco Pro Display';
+    src:
+        local('San Francisco Pro Display'),
+        url('../../shared/assets/fonts/SF-Pro-Display-Regular.otf') format('otf');
+    //  url('./fonts/SanFranciscoProDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'San Francisco Pro Display', sans-serif;
+    margin: 0;
+}
