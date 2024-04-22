@@ -109,7 +109,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: '.eslintrc.cjs',
+            files: ['.eslintrc.cjs', 'vite.config.ts'],
             rules: { '@typescript-eslint/naming-convention': 'off' },
         },
     ],

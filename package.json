@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
     },
     "dependencies": {
@@ -15,7 +15,8 @@
         "react-dom": "^18.2.0",
         "react-redux": "^9.1.1",
         "react-router-dom": "^6.22.3",
-        "sass": "^1.75.0"
+        "sass": "^1.75.0",
+        "path": "^0.12.7"
     },
     "devDependencies": {
         "@trivago/prettier-plugin-sort-imports": "4.3.0",
@@ -29,7 +30,6 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.6",
-        "path": "^0.12.7",
         "prettier": "^3.2.5",
         "typescript": "^5.2.2",
         "typescript-eslint": "^7.5.0",

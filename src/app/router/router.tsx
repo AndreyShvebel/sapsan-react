@@ -1,29 +1,21 @@
-import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
+import { Base } from '../../pages/base/ui/Base';
 import { MainSearch } from '@/pages/main-search/ui/MainSearch';
 import { SearchWithResult } from '@/pages/search-with-result';
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: (
-            <>
-                <Navigate to='/search' />
-                <Outlet />
-            </>
-        ),
-        children: [
-            {
-                path: '/search',
-                element: <MainSearch />,
-                children: [
-                    {
-                        path: '/search/result',
-                        element: <SearchWithResult />,
-                    },
-                ],
-            },
-        ],
+        element: <Base />,
+    },
+    {
+        path: '/search',
+        element: <MainSearch />,
+    },
+    {
+        path: '/search/result',
+        element: <SearchWithResult />,
     },
     {
         path: '*',

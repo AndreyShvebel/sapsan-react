@@ -15,4 +15,10 @@ export default defineConfig({
             { find: '@/app', replacement: path.resolve(__dirname, 'src/app') },
         ],
     },
+    server: {
+        port: 5000,
+    },
+    build: {
+        sourcemap: false,
+    },
 });
