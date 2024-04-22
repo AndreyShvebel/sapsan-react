@@ -13,7 +13,7 @@ export function MainSearch() {
                     <ImageSearch />
                 </div>
             )}
-            <div className={styles.main}>{outlet}</div>
+            <div>{outlet}</div>
         </>
     );
 }

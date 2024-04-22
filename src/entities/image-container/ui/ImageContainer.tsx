@@ -1,14 +1,5 @@
 import styles from './styles.module.scss';
 
-// type TImageContainerProps = {
-//     imgSrc: string;
-//     imgAlt: string;
-//     imgDescription: string;
-//   } & (
-//     | { isBlank?: false }
-//     | { isBlank: true } & Partial<Omit<ImageData, 'isBlank'>>
-//   );
-
 export function ImageContainer({
     imgSrc,
     imgAlt,

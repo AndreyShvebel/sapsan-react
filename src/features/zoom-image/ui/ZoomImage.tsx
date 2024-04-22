@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import closeButton from '@/shared/assets/images/closeImage.svg';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
