@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { ImageContainer } from '@/entities/image-container';
@@ -11,8 +12,17 @@ import styles from './styles.module.scss';
 export function SearchResult() {
     const { search } = useLocation();
     const searchParams = new URLSearchParams(search);
-    const { data, isLoading } = useGetImagesQuery({ page: 1, query: searchParams.get('query')! });
+    const [page, setPage] = useState(1);
+    const { data, isLoading } = useGetImagesQuery({ page, query: searchParams.get('query')! });
     const prepareOpeningImage = useOpenImage();
+
+    useEffect(() => {
+        // const interval = setInterval(() => {
+        //     setPage(prev => ++prev);
+        // }, 3000);
+        // () => clearInterval(interval);
+    }, []);
+
     return (
         <div>
             {isLoading ? (

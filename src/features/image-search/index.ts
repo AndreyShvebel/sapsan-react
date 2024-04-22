@@ -1,2 +1,2 @@
 export * from './ui/ImageSearch';
-export * from './model/searchApi';
+export * from './api/searchApi';

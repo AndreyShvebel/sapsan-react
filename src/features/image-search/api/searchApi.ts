@@ -30,21 +30,14 @@ export const searchApi = createApi({
     endpoints: builder => ({
         getImages: builder.query<TResult, { query: string; page: number }>({
             query: ({ query, page }) =>
-                `/photos?client_id=Ip0XA55zY7b7-d19osq1L5btGg-YCeDZVpnnJjXqHxs&query=${query}&page=${page}`,
-            // transformResponse: (_, response) => response?.response.
-            // async onQueryStarted(_, { dispatch, getState, extra, requestId }) {
-            //     const patchResult = dispatch(
-            //         searchApi.util.updateQueryData('getImages', getState(), draft => {
-            //             draft.results.push(...extra.newPhotos);
-            //         })
-            //         searchApi.util.
-            //     );
-            //     if (patchResult) {
-            //         patchResult.meta.requestId = requestId;
-            //     }
-            // },
-
-            // skip: ({ query, page }) => !query || page <= 0,
+                `/photos?client_id=Ip0XA55zY7b7-d19osq1L5btGg-YCeDZVpnnJjXqHxs&query=${query}&per_page=20`,
+            merge: (currentCache, newItems) => {
+                currentCache.results.push(...newItems.results);
+            },
+            forceRefetch({ currentArg, previousArg }) {
+                console.log(currentArg, previousArg);
+                return currentArg?.query !== previousArg?.query;
+            },
         }),
     }),
 });
