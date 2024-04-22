@@ -1,4 +1,5 @@
 .search {
+    display: flex;
     &Input {
         border-radius: 12px;
         height: 48px;
@@ -27,6 +28,19 @@
 
         &:hover {
             background-color: #c30000;
+            cursor: pointer;
+        }
+    }
+}
+.inputGroup {
+    position: relative;
+    max-width: 420px;
+    & .searchClear {
+        position: absolute;
+        right: 20px;
+        top: 14px;
+        width: 19px;
+        &:hover {
             cursor: pointer;
         }
     }
