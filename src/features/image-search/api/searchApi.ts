@@ -30,7 +30,7 @@ export const searchApi = createApi({
     endpoints: builder => ({
         getImages: builder.query<TResult, { query: string; page: number }>({
             query: ({ query, page }) =>
-                `/photos?client_id=Ip0XA55zY7b7-d19osq1L5btGg-YCeDZVpnnJjXqHxs&query=${query}&per_page=20`,
+                `/photos?client_id=Ip0XA55zY7b7-d19osq1L5btGg-YCeDZVpnnJjXqHxs&query=${query}&page=${page}`,
             merge: (currentCache, newItems) => {
                 currentCache.results.push(...newItems.results);
             },
