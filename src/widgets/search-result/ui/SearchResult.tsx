@@ -12,16 +12,29 @@ import styles from './styles.module.scss';
 export function SearchResult() {
     const { search } = useLocation();
     const searchParams = new URLSearchParams(search);
-    const [page, _] = useState(1);
-    const { data, isLoading } = useGetImagesQuery({ page, query: searchParams.get('query') });
+    const [page, setPage] = useState(1);
+    const { data, isLoading, isFetching } = useGetImagesQuery({ page, query: searchParams.get('query') });
     const prepareOpeningImage = useOpenImage();
 
     useEffect(() => {
-        // const interval = setInterval(() => {
-        //     setPage(prev => ++prev);
-        // }, 3000);
-        // () => clearInterval(interval);
-    }, []);
+        const onScroll = () => {
+            const isScrolledToBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+            if (isScrolledToBottom && !isFetching) {
+                setPage(prev => {
+                    if (data.total_pages === prev) {
+                        return prev;
+                    }
+                    return ++prev;
+                });
+            }
+        };
+
+        document.addEventListener('scroll', onScroll);
+
+        return function () {
+            document.removeEventListener('scroll', onScroll);
+        };
+    }, [page, isFetching]);
 
     return (
         <div>

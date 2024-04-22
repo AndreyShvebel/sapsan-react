@@ -31,17 +31,13 @@ export const searchApi = createApi({
         getImages: builder.query<TResult, { query: string; page: number }>({
             query: ({ query, page }) =>
                 `/photos?client_id=Ip0XA55zY7b7-d19osq1L5btGg-YCeDZVpnnJjXqHxs&query=${query}&page=${page}&per_page=25`,
-            // serializeQueryArgs: ({ endpointName }) => {
-            //     return endpointName;
-            // },
-            // merge: (currentCache, newItems) => {
-            //     currentCache.results.push(...newItems.results);
-            // },
-            // forceRefetch({ currentArg, previousArg, state, endpointState }) {
-            //     console.log(currentArg.query !== previousArg.query, state, endpointState);
-            //     // return currentArg?.query !== previousArg?.query;
-            //     return false;
-            // },
+            serializeQueryArgs: ({ queryArgs }) => {
+                return queryArgs.query;
+            },
+            merge: (currentCache, newItems) => {
+                currentCache.results.push(...newItems.results);
+            },
+            forceRefetch: () => true,
         }),
     }),
 });
