@@ -8,10 +8,19 @@ import { Loader } from '@/entities/loader';
 import { closeImage } from '../model/zoomImageSlice';
 import styles from './styles.module.scss';
 
+function setNoScrollOnBody(isActive: boolean) {
+    if (isActive) {
+        document.body.classList.add('noScroll');
+    } else {
+        document.body.classList.remove('noScroll');
+    }
+}
+
 export function ZoomImage() {
     const dispatch = useAppDispatch();
     const { isOpen, src } = useAppSelector(state => state.zoomImage);
     const [imgIsLoaded, setImgIsLoaded] = useState(false);
+    setNoScrollOnBody(isOpen);
 
     return isOpen ? (
         <div className={styles.overlay}>
