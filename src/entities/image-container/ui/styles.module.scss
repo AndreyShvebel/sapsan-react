@@ -1,0 +1,32 @@
+.imageContainer {
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 204px;
+    max-height: 204px;
+    margin: 0 5px 10px;
+    overflow: hidden;
+    & img {
+        position: relative;
+        display: block;
+        width: auto;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 767px) {
+    .imageContainer {
+        max-width: 114px;
+        max-height: 114px;
+    }
+}
+
+@media (max-width: 400px) {
+    .imageContainer {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}

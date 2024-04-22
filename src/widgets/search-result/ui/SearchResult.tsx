@@ -1,8 +1,11 @@
 import { useLocation } from 'react-router-dom';
 
+import { ImageContainer } from '@/entities/image-container';
 import { Loader } from '@/entities/loader';
 
 import { useGetImagesQuery } from '@/features/image-search';
+
+import styles from './styles.module.scss';
 
 export function SearchResult() {
     const { search } = useLocation();
@@ -13,14 +16,18 @@ export function SearchResult() {
             {isLoading ? (
                 <Loader />
             ) : data?.results.length ? (
-                data?.results.map(img => (
-                    <img
-                        key={img.id}
-                        src={img.urls.regular}
-                    />
-                ))
+                <div className={styles.imageWrapper}>
+                    {data?.results.map(img => (
+                        <ImageContainer
+                            key={img.id}
+                            imgSrc={img.urls.small}
+                            imgAlt={img.alt_description}
+                            imgDescription={img.description}
+                        />
+                    ))}
+                </div>
             ) : (
-                <h5>К сожалению, поиск не дал результатов</h5>
+                <p>К сожалению, поиск не дал результатов</p>
             )}
         </div>
     );

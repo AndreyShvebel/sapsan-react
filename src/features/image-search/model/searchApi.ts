@@ -11,6 +11,8 @@ type TResult = {
         width: number;
         height: number;
         color: string;
+        description: string;
+        alt_description: string;
         urls: {
             full: string;
             raw: string;
